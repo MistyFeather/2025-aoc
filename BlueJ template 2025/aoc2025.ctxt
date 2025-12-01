@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=aoc2025
+comment1.params=
+comment1.target=aoc2025()
+comment1.text=\r\n\ Konstruktor\ f\u00FCr\ Objekte\ der\ Klasse\ aoc2021\r\n\ \r\n\ @param\ \ filename\ \ \ \ \ \ Dateiname\ des\ R\u00E4tsel-Inputs\ (z.B.\ "day0")\ \r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ im\ Projektverzeichnis.\r\n
+comment2.params=filename
+comment2.target=void\ readInput(java.lang.String)
+comment2.text=\r\n\ Beispielhafte\ Methode\ zum\ zeilenweisen\ Einlesen\ \r\n\ der\ Daten\ in\ die\ ArrayList\ inputLines.\r\n
+comment3.params=
+comment3.target=void\ printInput()
+comment3.text=\r\n\ Kontrollausgabe\ der\ inputLines\ ArrayList.\r\n
+numComments=4
