@@ -6,5 +6,5 @@ comment1.target=Day5()
 comment2.params=
 comment2.target=int\ partOne()
 comment3.params=
-comment3.target=int\ partTwo()
+comment3.target=long\ partTwo()
 numComments=4

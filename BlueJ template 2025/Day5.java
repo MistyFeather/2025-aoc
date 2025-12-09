@@ -34,35 +34,98 @@ public class Day5 extends aoc2025 {
     }
 
     public int partOne() {
+        /* funktioniert nur bei kleinen Datenmengen (Beispiel)
         ArrayList<Long> freshrange = new ArrayList<>();
         int fresh = 0;
         int blankLine = -1;
+        for(String i:inputLines){
+        blankLine++;
+        if(i.equals("")) break;
+        String[] srange = i.split("-");
+        long[] range = {Long.parseLong(srange[0]),Long.parseLong(srange[1])};
+        for(long id = range[0]; id<=range[1]; id++){
+        if(!freshrange.contains(id)){
+        freshrange.add(id);
+        }
+        }
+        }
+
+        for(int i = blankLine+1; i<inputLines.size(); i++){
+        if(freshrange.contains(Long.parseLong(inputLines.get(i)))) fresh++;
+        }
+        return fresh;
+         */
+        int fresh = 0;
+        int blankLine = -1;
+        ArrayList<long[]> freshranges = new ArrayList<>();
         for(String i:inputLines){
             blankLine++;
             if(i.equals("")) break;
             String[] srange = i.split("-");
             long[] range = {Long.parseLong(srange[0]),Long.parseLong(srange[1])};
-            for(long id = range[0]; id<=range[1]; id++){
-                if(!freshrange.contains(id)){
-                    freshrange.add(id);
+            freshranges.add(range);
+        }
+        for(int i = blankLine+1; i<inputLines.size(); i++) {
+            long id = Long.parseLong(inputLines.get(i));
+            for(long[] r:freshranges){
+                if(id >= r[0]){
+                    if(id <= r[1]){
+                        fresh++;
+                        break;
+                    }
                 }
             }
-            System.out.println(blankLine);
-        }
-        
-        for(int i = blankLine+1; i<inputLines.size(); i++){
-            if(freshrange.contains(Long.parseLong(inputLines.get(i)))) fresh++;
         }
         return fresh;
     }
 
-    public int partTwo() {
-        for(String zeile: inputLines) {
-            // ArrayList<Character> zahlen = new ArrayList<>();
-
+    public long partTwo() {
+        /* (s.o.) lädt zu lange bei großen Datenmengen bzw. passt nicht in ArrayList?
+        ArrayList<Long> freshrange = new ArrayList<>();
+        int fresh = 0;
+        for(String i:inputLines){
+        if(i.equals("")) break;
+        String[] srange = i.split("-");
+        long[] range = {Long.parseLong(srange[0]),Long.parseLong(srange[1])};
+        for(long id = range[0]; id<=range[1]; id++){
+        if(!freshrange.contains(id)){
+        freshrange.add(id);
+        }
+        }
         }
 
-        return 0;
+        return freshrange.size();
+         */
+        long fresh = 0;
+        ArrayList<long[]> freshranges = new ArrayList<>();
+        for(String i:inputLines){ //initialisiert ArrayList mit den freshranges
+            if(i.equals("")) break;
+            String[] srange = i.split("-");
+            long[] range = {Long.parseLong(srange[0]),Long.parseLong(srange[1])};
+            long min = range[0];
+            long max = range[1];
+            for(long[] r:freshranges){
+                if(min >= r[0]){
+                    if(min <= r[1]){
+                        min = r[1]+1;
+                    }
+                }
+                if(max >= r[0]){
+                    if(max <= r[1]){
+                        max = r[0]-1;
+                    }
+                }
+            }
+            long f = max - min +1;
+            if(f >= 0){
+                fresh += f;
+                long[] addedRange = {min,max};
+                freshranges.add(addedRange);
+            }
+        }
+        System.out.println(fresh);
+        return fresh;
+        //keine Lösung für den Fall, dass eine range über andere komplett hinweg geht -> falsch, Antwort zu groß
     }
 
 }
