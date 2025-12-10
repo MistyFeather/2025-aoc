@@ -104,20 +104,29 @@ public class Day5 extends aoc2025 {
             long[] range = {Long.parseLong(srange[0]),Long.parseLong(srange[1])};
             long min = range[0];
             long max = range[1];
-            for(long[] r:freshranges){
-                if(min >= r[0]){
+            for(long[] r:freshranges){ // prüfe für jede range, die bereits gespeichert wurde
+                if(min >= r[0]){ // aktuelles min ist in einer range
                     if(min <= r[1]){
-                        min = r[1]+1;
+                        min = r[1]+1; // min wird zum ende der range verschoben
                     }
                 }
-                if(max >= r[0]){
+                if(max >= r[0]){ // aktuelles max ist in einer range
                     if(max <= r[1]){
-                        max = r[0]-1;
+                        max = r[0]-1; // max wird zum anfang der range verschoben
+                    }
+                }
+            }
+            for(long[] r:freshranges){ //überprüfe für jede bereits gespeicherte range, ob sie komplett in der aktuellen range liegt
+                if(r[0] >= min){
+                    if(r[0] <= max) {
+                        fresh -= (r[1]-r[0]+1); // wenn ja, dann entferne ihren Betrag
+                        r[0] = 0;
+                        r[1] = 0;
                     }
                 }
             }
             long f = max - min +1;
-            if(f >= 0){
+            if(f >= 0){ // f negativ, falls aktuelle range komplett in anderer range war
                 fresh += f;
                 long[] addedRange = {min,max};
                 freshranges.add(addedRange);
@@ -125,7 +134,6 @@ public class Day5 extends aoc2025 {
         }
         System.out.println(fresh);
         return fresh;
-        //keine Lösung für den Fall, dass eine range über andere komplett hinweg geht -> falsch, Antwort zu groß
     }
 
 }
