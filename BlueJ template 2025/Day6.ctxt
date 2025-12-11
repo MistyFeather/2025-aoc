@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Day6
+comment0.text=\r\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ Day6.\r\n\ \r\n\ @author\ Sara\ Schmid\ \r\n\ @version\ 01.12.2024\r\n
+comment1.params=
+comment1.target=Day6()
+comment2.params=
+comment2.target=long\ partOne()
+comment3.params=
+comment3.target=int\ partTwo()
+numComments=4
